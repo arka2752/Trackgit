@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Trackgit</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+</head>
+<body>
+  
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fa-brands fa-github"></i>
+        <span>Trackgit</span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="compare.html">Compare</a>
+        <a href="favorites.html">Favorites</a>
+      </nav>
+      
+      <div class="header-actions">
+        <div class="rate-limit-badge" id="rate-limit-display" title="GitHub API Rate Limit">
+          <i class="fa-solid fa-bolt"></i> <span id="rate-limit-text">--/--</span>
+        </div>
+        <a href="settings.html" class="btn btn-outline" title="Settings"><i class="fa-solid fa-gear"></i></a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main-content container animate-fade-in" style="max-width: 800px;">
+    <div class="card">
+      <h2 style="margin-bottom: var(--spacing-md);">About Trackgit</h2>
+      <p>
+        This dashboard is built entirely with HTML, CSS, and Vanilla JavaScript. It connects to the GitHub REST API and a public contribution proxy to fetch, analyze, and visualize developer profiles.
+      </p>
+      
+      <h3 style="margin-top: var(--spacing-lg);">How the Developer Score is calculated</h3>
+      <p>
+        The 0-100 score uses a logarithmically scaled formula to account for the extreme variations in open source metrics (e.g., users with 0 followers vs 100,000 followers). It weights:
+      </p>
+      <ul style="list-style-type: disc; margin-left: 24px; margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+        <li><strong>Repository Quality (30%)</strong>: Average stars and forks across all public repos.</li>
+        <li><strong>Followers (20%)</strong>: Overall profile followers.</li>
+        <li><strong>Activity (20%)</strong>: How many repos have been pushed to within the last year.</li>
+        <li><strong>Language Diversity (15%)</strong>: Number of distinct languages used (capped at 6).</li>
+        <li><strong>Repository Count (15%)</strong>: Total public repos.</li>
+      </ul>
+      
+      <h3 style="margin-top: var(--spacing-lg);">Technologies Used</h3>
+      <ul style="list-style-type: disc; margin-left: 24px; color: var(--text-secondary);">
+        <li>HTML5, CSS3 (Flexbox/Grid), Vanilla JavaScript (ES6+)</li>
+        <li>GitHub REST API</li>
+        <li>Chart.js (CDN)</li>
+        <li>FontAwesome (CDN)</li>
+      </ul>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Trackgit</p>
+    </div>
+  </footer>
+  
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

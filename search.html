@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Developer - Trackgit</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+</head>
+<body>
+  
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fa-brands fa-github"></i>
+        <span>Trackgit</span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html" class="active">Search</a>
+        <a href="compare.html">Compare</a>
+        <a href="favorites.html">Favorites</a>
+      </nav>
+      
+      <div class="header-actions">
+        <div class="rate-limit-badge" id="rate-limit-display" title="GitHub API Rate Limit">
+          <i class="fa-solid fa-bolt"></i> <span id="rate-limit-text">--/--</span>
+        </div>
+        <a href="settings.html" class="btn btn-outline" title="Settings"><i class="fa-solid fa-gear"></i></a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main-content container">
+    <div style="margin-bottom: var(--spacing-lg);">
+      <form id="search-form" class="search-bar-large">
+        <input type="text" id="search-input" class="input-control" placeholder="Search GitHub username..." required>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+    
+    <div id="error-container" class="card hidden" style="border-color: var(--danger-color); color: var(--danger-color); margin-bottom: var(--spacing-md);"></div>
+    
+    <div id="content-container" class="hidden">
+      
+      <div style="display: flex; gap: var(--spacing-lg);" class="profile-layout">
+        <!-- Sidebar: Profile & Score -->
+        <div class="profile-sidebar" style="width: 320px; flex-shrink: 0;">
+          <div class="card mb-lg text-center" id="profile-card">
+            <!-- Profile injected here -->
+          </div>
+          
+          <div class="card mb-lg text-center">
+            <h3>Developer Score</h3>
+            <div id="score-container" style="margin: var(--spacing-md) 0;"></div>
+            <p style="font-size: 0.875rem; color: var(--text-secondary);">Based on repository quality, followers, and activity.</p>
+          </div>
+          
+          <div class="card mb-lg">
+            <h3>Recruiter Notes</h3>
+            <textarea id="notes-area" class="input-control" style="width: 100%; min-height: 120px; resize: vertical;" placeholder="Add private notes for this candidate..."></textarea>
+          </div>
+        </div>
+        
+        <!-- Main Area: Stats, Heatmap, Charts, Repos -->
+        <div style="flex: 1; min-width: 0;">
+          
+          <div style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); overflow-x: auto; padding-bottom: 8px;" id="stats-row">
+            <!-- Stats injected here -->
+          </div>
+          
+          <div class="card mb-lg" id="insights-card">
+            <h3>Insights</h3>
+            <div id="insights-tags" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;"></div>
+          </div>
+          
+          <!-- Heatmap Section -->
+          <div class="card mb-lg">
+            <h3>Contribution Activity</h3>
+            <div id="heatmap-container" style="margin-top: 16px; overflow-x: auto;">
+              <!-- Proxy heatmap injected here or fallback message -->
+            </div>
+          </div>
+          
+          <!-- Charts Section -->
+          <div class="charts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+            <div class="card" style="height: 300px; display: flex; flex-direction: column;">
+              <h3 style="margin-bottom: 0;">Languages</h3>
+              <div style="flex: 1; position: relative; min-height: 0;">
+                <canvas id="lang-chart"></canvas>
+              </div>
+            </div>
+            <div class="card" style="height: 300px; display: flex; flex-direction: column;">
+              <h3 style="margin-bottom: 0;">Top Repos by Stars</h3>
+              <div style="flex: 1; position: relative; min-height: 0;">
+                <canvas id="stars-chart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Repositories Section -->
+          <div class="card">
+            <div class="flex-between" style="margin-bottom: var(--spacing-md);">
+              <h3>Repositories</h3>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="repo-filter" class="input-control" placeholder="Filter repos..." style="padding: 4px 8px; font-size: 0.875rem;">
+              </div>
+            </div>
+            <div id="repos-container">
+              <!-- Repos injected here -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div id="loading-container" class="hidden">
+      <!-- Skeleton layout -->
+      <div style="display: flex; gap: var(--spacing-lg);" class="profile-layout">
+        <div style="width: 320px; flex-shrink: 0;" class="profile-sidebar">
+          <div class="card skeleton-card mb-lg" style="height: 400px;"></div>
+        </div>
+        <div style="flex: 1;">
+          <div class="card skeleton-card mb-lg" style="height: 100px;"></div>
+          <div class="card skeleton-card mb-lg" style="height: 200px;"></div>
+          <div class="card skeleton-card mb-lg" style="height: 300px;"></div>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Trackgit</p>
+    </div>
+  </footer>
+  
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/insights.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script src="js/pages/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Trackgit</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+</head>
+<body>
+  
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fa-brands fa-github"></i>
+        <span>Trackgit</span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="compare.html">Compare</a>
+        <a href="favorites.html">Favorites</a>
+      </nav>
+      
+      <div class="header-actions">
+        <div class="rate-limit-badge" id="rate-limit-display" title="GitHub API Rate Limit">
+          <i class="fa-solid fa-bolt"></i> <span id="rate-limit-text">--/--</span>
+        </div>
+        <a href="settings.html" class="btn btn-outline active" title="Settings"><i class="fa-solid fa-gear"></i></a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main-content container animate-fade-in" style="max-width: 600px;">
+    <h2 style="margin-bottom: var(--spacing-lg);">Settings</h2>
+    
+    <div class="card mb-lg">
+      <h3>GitHub API Authentication</h3>
+      <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+        By default, the GitHub API limits unauthenticated requests to 60 per hour per IP. 
+        Add a Personal Access Token (PAT) to increase this limit to 5,000 per hour.
+        Your token is saved locally in your browser and is only sent directly to GitHub.
+      </p>
+      
+      <form id="token-form">
+        <div class="input-group">
+          <label class="input-label" for="pat-input">Personal Access Token</label>
+          <input type="password" id="pat-input" class="input-control" placeholder="ghp_xxxxxxxxxxxx...">
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="submit" class="btn btn-primary">Save Token</button>
+          <button type="button" id="clear-token-btn" class="btn btn-outline">Clear</button>
+        </div>
+      </form>
+      <div id="token-msg" style="margin-top: 8px; font-size: 0.875rem; font-weight: bold; color: var(--success-color);" class="hidden">Saved!</div>
+    </div>
+    
+    <div class="card">
+      <h3>Data Management</h3>
+      <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+        Clear locally saved search history and notes.
+      </p>
+      <button type="button" id="clear-history-btn" class="btn btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);">Clear Search History</button>
+    </div>
+  </main>
+  
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script src="js/pages/settings.js"></script>
+
+</body>
+</html>

@@ -1,21 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trackgit - Find and analyze GitHub developers for recruitment.">
+  <title>Trackgit</title>
+  
+  <!-- CDNs for Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 <body>
-    <input type="text" id="username-input">
-   <button id="username-input-button">Search</button>
-    <div id="container">
-        <img src="" alt="" id="avatar">
-        <h2 id="name"></h2>
-        <p id="bio"></p>
-        <p id="follower"></p>
-        <p id="repo-count"></p>
+  
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fa-brands fa-github"></i>
+        <span>Trackgit</span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="search.html">Search</a>
+        <a href="compare.html">Compare</a>
+        <a href="favorites.html">Favorites</a>
+      </nav>
+      
+      <div class="header-actions">
+        <div class="rate-limit-badge" id="rate-limit-display" title="GitHub API Rate Limit">
+          <i class="fa-solid fa-bolt"></i> <span id="rate-limit-text">--/--</span>
+        </div>
+        <a href="settings.html" class="btn btn-outline" title="Settings"><i class="fa-solid fa-gear"></i></a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </header>
+  
+  <main class="main-content">
+    <section class="hero container animate-fade-in">
+      <h1>Discover Top Tech Talent</h1>
+      <p>Analyze GitHub profiles, repositories, and contribution patterns to find the perfect match for your engineering team.</p>
+      
+      <form id="hero-search-form" class="search-bar-large animate-slide-up delay-100">
+        <input type="text" id="hero-search-input" class="input-control" placeholder="Search GitHub username (e.g. torvalds)" required>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </section>
+    
+    <section class="container animate-slide-up delay-200">
+      <div class="features-grid">
+        <div class="card feature-card">
+          <i class="fa-solid fa-chart-pie"></i>
+          <h3>Language Insights</h3>
+          <p>Instantly see a developer's primary languages and role classification based on repository activity.</p>
+        </div>
+        <div class="card feature-card">
+          <i class="fa-solid fa-code-compare"></i>
+          <h3>Side-by-side Compare</h3>
+          <p>Compare two developers against each other to evaluate metrics, activity, and technical focus.</p>
+        </div>
+        <div class="card feature-card">
+          <i class="fa-solid fa-star"></i>
+          <h3>Developer Score</h3>
+          <p>Our custom algorithmic score evaluates repository quality, followers, and contribution consistency.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="container popular-devs animate-slide-up delay-300">
+      <h2>Popular Developers</h2>
+      <p>Click a card to view their full profile.</p>
+      <div class="dev-grid" id="popular-devs-container">
+        <!-- Developer cards injected by JS -->
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Trackgit. Built with Vanilla JS.</p>
+      <div class="nav-links" style="justify-content: center; margin-top: 10px;">
+        <a href="about.html">About</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Custom Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/home.js"></script>
 </body>
 </html>

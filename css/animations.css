@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Animations & Transitions
+   ========================================================================== */
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Slide Up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+/* Staggered Delay Utility Classes */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Skeleton Loading */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: var(--surface-hover);
+  background-image: linear-gradient(
+    to right,
+    var(--surface-hover) 0%,
+    var(--border-color) 20%,
+    var(--surface-hover) 40%,
+    var(--surface-hover) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 1000px 100%;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 16px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.skeleton-text.short { width: 50%; }
+.skeleton-text.medium { width: 75%; }
+.skeleton-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.skeleton-card {
+  height: 150px;
+  border-radius: var(--radius-md);
+}
+
+/* Circular Progress Animation */
+@keyframes progressFill {
+  from { stroke-dasharray: 0, 100; }
+  to { stroke-dasharray: var(--score), 100; }
+}
+.progress-ring-circle {
+  transition: stroke-dasharray 1s ease-out;
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .skeleton {
+    animation: none;
+    background-image: none;
+  }
+}
